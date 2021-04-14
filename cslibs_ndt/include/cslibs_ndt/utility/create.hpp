@@ -29,7 +29,7 @@ template <typename storage_t, std::size_t Dim, std::size_t... counter>
 inline std::array<std::shared_ptr<storage_t>,Dim> create(
         utility::integer_sequence<std::size_t,counter...>)
 {
-    auto create_at = [](const std::size_t& c) {
+    auto create_at = [](const std::size_t& /*c*/) {
         return std::shared_ptr<storage_t>(new storage_t);
     };
     return {create_at(counter)...};
@@ -45,7 +45,7 @@ inline std::array<std::shared_ptr<storage_t>,Dim> create()
 template <typename T, std::size_t Dim, std::size_t... counter>
 inline std::array<T,Dim> create(const T& value, utility::integer_sequence<std::size_t,counter...>)
 {
-    auto create_at = [&value](const std::size_t& c) {
+    auto create_at = [&value](const std::size_t& /*c*/) {
         return value;
     };
     return {create_at(counter)...};

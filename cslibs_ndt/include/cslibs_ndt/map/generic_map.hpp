@@ -290,7 +290,7 @@ protected:
         this->max_bundle_index_ = std::max(this->max_bundle_index_, chunk_index);
     }
 
-    virtual inline bool valid(const index_t &index) const override
+    virtual inline bool valid(const index_t &/*index*/) const override
     {
         return true;
     }
