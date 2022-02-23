@@ -140,8 +140,8 @@ public:
                 retval[counter] += ((bi[counter] > start_bi[counter]) ? -1 : 1);
                 return retval;
             };
-            auto occupancy = [this, &ivm, &points_origin, &end](const index_t &bi) {
-                const distribution_bundle_t *bundle = this->get(bi);
+            auto occupancy = [this, &ivm, &points_origin, &end](const index_t &occ_bi) {
+                const distribution_bundle_t *bundle = this->get(occ_bi);
                 T retval = T(0.);
                 if (bundle) {
                     for (std::size_t i=0; i<this->bin_count; ++i) {

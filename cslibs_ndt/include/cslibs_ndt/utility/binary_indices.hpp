@@ -63,7 +63,7 @@ template <std::size_t From,
           typename Fn,
           typename index_t = std::array<int,Dim>>
 inline typename std::enable_if<From == To, void>::type
-apply_indices(const index_t& bi, const Fn& function)
+apply_indices(const index_t& /*bi*/, const Fn& /*function*/)
 {
 }
 

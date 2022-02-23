@@ -32,6 +32,9 @@ public:
             cis::option::get_option<cis::option::merge_strategy_opt, options_ts_...>::value;
     static constexpr std::size_t dimension = (1 << index_if::dimensions);
 
+    OcTree() = default;
+    virtual ~OcTree() = default;
+
 protected:
     struct Data
     {
@@ -40,7 +43,7 @@ protected:
     };
 
     union Node {
-        inline bool childExists(const unsigned int pos) const
+        inline bool childExists(const std::size_t pos) const
         {
             assert (pos < dimension);
             return children_ && children_[pos];
@@ -51,14 +54,14 @@ protected:
             if (!children_)
                 return false;
 
-            for (unsigned int i=0; i<dimension; ++i)
+            for (std::size_t i=0; i<dimension; ++i)
                 if (children_[i])
                     return true;
 
             return false;
         }
 
-        inline Node* createChild(const unsigned int pos)
+        inline Node* createChild(const std::size_t pos)
         {
             assert (pos < dimension);
             // allocate children pointers
@@ -72,14 +75,14 @@ protected:
             return children_[pos];
         }
 
-        inline Node* getChild(const unsigned int pos)
+        inline Node* getChild(const std::size_t pos)
         {
             assert ((pos < dimension) && children_);
             assert (children_[pos]);
             return children_[pos];
         }
 
-        inline const Node* getChild(const unsigned int pos) const
+        inline const Node* getChild(const std::size_t pos) const
         {
             assert ((pos < dimension) && children_);
             assert (children_[pos]);
